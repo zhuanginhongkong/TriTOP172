@@ -1,4 +1,5 @@
 function TriTOP172(nx,ny,ER,tau,Vmax,maxedge,minedge,E,nu)
+% TriTOP172(80,50,0.05,2e-8,0.5,0.2,0.025,1e5,0.3)
 %% PARAMETER CHECK
 if (tau/E>1e-12) || (ER>0.1) error('Improper input'); end
 %% INITIALIZATION
@@ -56,7 +57,7 @@ pfix=[C'; BDY(2,1) BDY(1,2); BDY(1,1) BDY(2,2); BDY(1,1) BDY(1,2); BDY(2,1) BDY(
 p = [pfix; pi(r0./max(r0)>0.5,:)];
 p1 = 0; warning off;
 for i = 1:maxiter
-if max(sum((p-p1).^2,2))>1e-6
+if max(sum((p-p1).^2,2))>1e-5
 t = delaunayn(p);
 edges = unique(sort([t(:,[1,2]);t(:,[1,3]); t(:,[2,3])],2),'rows');
 p1 = p;
